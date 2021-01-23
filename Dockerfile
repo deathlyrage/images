@@ -14,10 +14,9 @@ RUN         apt-get update \
             && apt-get upgrade -y \
             && apt-get install -y tar curl lib32gcc1 ca-certificates p7zip-full libunwind8 icu-devtools openssl liblttng-ust0 libssl1.0.0 libkrb5-3 zlib1g libicu60 libuuid1 \
 			gcc g++ lib32gcc1 libgcc1 lib32tinfo5 lib32z1 lib32stdc++6 iproute2 gdb libsdl1.2debian libfontconfig telnet net-tools netcat \
+			&& mkdir -p /etc/pki/tls/certs/ && ln -s /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt \
             && useradd -m -d /home/container container
 			
-RUN mkdir -p /etc/pki/tls/certs/ && ln -s /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt
-
 USER        container
 ENV         HOME /home/container
 WORKDIR     /home/container
